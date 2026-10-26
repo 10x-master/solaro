@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>솔라로(주) SOLARO | 차세대 태양광 도로표지병</title>
+  
+  <meta name="description" content="중소벤처기업부 성능인증(EPC) 획득 태양광 도로표지병. 국산화율 92%, 국토부 기준 30배 광도(1,392mcd), 50톤 내하중 및 IP69 영구 방수. 지자체 수의계약 1순위.">
+  <meta name="keywords" content="솔라로, 도로표지병, 태양광도로표지병, 성능인증, EPC, 조달청수의계약, 나라장터, 시인성">
+  <meta property="og:title" content="솔라로(주) SOLARO | 도로표지병의 황태자">
+  <meta property="og:description" content="야간 빗길·안갯길 30배 더 밝은 도로 유도선. 공공조달 수의계약 1순위 태양광 도로표지병.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solaro.co.kr">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Pretendard Web Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              point: '#ff5a1f', // 아이파킹 스타일의 절제된 에너지 컬러
+              orange: '#f97316',
+              amber: '#d97706',
+              dark: '#111827',
+              gray: '#6b7280',
+              bgLight: '#f9fafb',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 미니멀한 텍스트 가독성과 스크롤링 */
+    body {
+      word-break: keep-all;
+      letter-spacing: -0.025em;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+    /* 터치 피드백 */
+    .btn-press {
+      transition: transform 0.1s ease, opacity 0.1s ease;
+    }
+    .btn-press:active {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-slate-900 selection:text-white pb-24">
+
+  <!-- ========================================== -->
+  <!-- [GNB 헤더: 아이파킹 스타일의 미니멀 화이트] -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-2xl mx-auto px-5 h-16 flex items-center justify-between">
+      <!-- 로고 -->
+      <a href="https://solaro.co.kr" class="flex items-center gap-2 group">
+        <span class="text-xl font-black tracking-tight text-slate-900 group-hover:text-brand-point transition-colors">
+          SOLARO<span class="text-brand-point">.</span>
+        </span>
+        <span class="text-xs text-slate-400 font-medium pl-1 hidden sm:inline">솔라로(주)</span>
+      </a>
+
+      <!-- 헤더 우측 메뉴 -->
+      <div class="flex items-center gap-3">
+        <a href="tel:01055538250" class="text-xs font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-2.5">
+          <i class="fa-solid fa-phone text-slate-400 text-[11px]"></i>
+          <span>010-5553-8250</span>
+        </a>
+        <a href="#inquiry" class="btn-press text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 px-3.5 py-2 rounded-full transition-all">
+          견적 문의
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 래퍼 (중앙 정렬 뷰: max-w-2xl) -->
+  <main class="max-w-2xl mx-auto px-5">
+
+    <!-- ========================================== -->
+    <!-- [1. 메인 히어로 섹션] -->
+    <!-- ========================================== -->
+    <section class="pt-14 pb-12 text-left sm:text-center">
+      <!-- 서브 태그 -->
+      <p class="text-sm font-bold text-brand-point tracking-wide mb-3">
+        중기부 성능인증(EPC) 획득 · 공공조달 수의계약 1순위
+      </p>
+
+      <!-- 메인 카피 -->
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight mb-5">
+        야간 빗길·안갯길,<br class="hidden sm:block">
+        30배 더 선명한 도로 유도선
+      </h1>
+
+      <!-- 설명 문구 -->
+      <p class="text-base text-slate-500 leading-relaxed max-w-xl mx-auto mb-8 font-normal">
+        솔라로(주)는 국산화율 92%의 자체 기술력으로 완성된 대한민국 프리미엄 태양광 도로표지병 전문 제조기업입니다. 
+        비가 쏟아져도 꺼지지 않는 700m 전방 시인성으로 도로의 안전을 책임집니다.
+      </p>
+
+      <!-- 퀵 액션 버튼군 -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2">
+        <a href="#inquiry" class="btn-press inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-6 py-3.5 rounded-xl transition-all shadow-sm">
+          <span>시험성적서 및 견적 요청</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+        <a href="tel:01055538250" class="btn-press inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-sm px-6 py-3.5 rounded-xl transition-all">
+          <i class="fa-solid fa-phone text-xs text-slate-500"></i>
+          <span>기술팀 다이렉트 통화</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- [2. 실제 주행 비교 영상 (클린 프레임)] -->
+    <!-- ========================================== -->
+    <section class="py-6">
+      <div class="space-y-3 mb-4">
+        <h2 class="text-xl font-bold text-slate-900 tracking-tight">
+          실제 주행 영상으로 확인하는 압도적 시인성
+        </h2>
+        <p class="text-sm text-slate-500 font-normal">
+          우천 시 일반 반사체 도로와 솔라로 자체발광 설치 구간의 차이를 직접 눈으로 확인해 보세요.
+        </p>
+      </div>
+
+      <!-- 영상 컨테이너 -->
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
+        <iframe 
+          class="absolute inset-0 w-full h-full"
+          src="https://www.youtube.com/embed/lUCmgHLysz8?rel=0&modestbranding=1" 
+          title="솔라로 도로표지병 실제 주행 시인성 비교" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="text-xs text-slate-400 mt-2.5">
+        * 가시거리 500m~700m 이상 확보 / 특수 광학렌즈 설계로 운전자 눈부심 방지
+      </p>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- [3. 숫자로 증명하는 솔라로의 기술력 (미니멀 타이포)] -->
+    <!-- ========================================== -->
+    <section class="py-14">
+      <div class="mb-10">
+        <p class="text-xs font-bold text-brand-point tracking-widest uppercase mb-2">Performance</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          비교할 수 없는 4가지 절대 기준
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 gap-y-10 gap-x-6">
+        <!-- 스펙 1 -->
+        <div class="space-y-1.5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            1,392<span class="text-base sm:text-lg font-bold text-slate-400 ml-1">mcd</span>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">국토부 기준 대비 30배 광도</h3>
+          <p class="text-xs text-slate-500 leading-relaxed font-normal">
+            최저 기준(60mcd)을 아득히 뛰어넘는 압도적 밝기로 야간 및 폭우 속에서도 700m 전방 차선을 선명하게 유도합니다.
+          </p>
+        </div>
+
+        <!-- 스펙 2 -->
+        <div class="space-y-1.5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            50<span class="text-base sm:text-lg font-bold text-slate-400 ml-1">ton</span>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">50톤 하중 & IP69 완전방수</h3>
+          <p class="text-xs text-slate-500 leading-relaxed font-normal">
+            해양급 AC7A-12 알루미늄 주조와 폴리올레핀계 핫멜트 영구 수밀 특허기술로 침수와 대형 화물차 충격을 완벽 방어합니다.
+          </p>
+        </div>
+
+        <!-- 스펙 3 -->
+        <div class="space-y-1.5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            92<span class="text-base sm:text-lg font-bold text-slate-400 ml-1">%</span>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">국산화율 및 직접생산</h3>
+          <p class="text-xs text-slate-500 leading-relaxed font-normal">
+            주조부터 충전재 도포, 최종 검수까지 국내 자체 생산 라인을 운영하여 직접생산확인증명서를 보유하고 있습니다.
+          </p>
+        </div>
+
+        <!-- 스펙 4 -->
+        <div class="space-y-1.5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            3<span class="text-base sm:text-lg font-bold text-slate-400 ml-1">년</span>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">업계 유일 36개월 무상 A/S</h3>
+          <p class="text-xs text-slate-500 leading-relaxed font-normal">
+            폭발 위험이 없는 친환경 Ni-MH(니켈수소) 배터리를 탑재하여 6년 이상의 수명과 철저한 품질 보증을 제공합니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 조달 팩트 안내 -->
+      <div class="mt-10 p-5 rounded-2xl bg-slate-50">
+        <h4 class="text-sm font-bold text-slate-900 mb-1">
+          공공기관·지자체 금액 제한 없는 수의계약 가능
+        </h4>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          솔라로 태양광 도로표지병은 중소벤처기업부 성능인증(EPC, 2026.01.27 등록) 획득 제품으로, 판로지원법령에 따라 지자체 및 공공기관에서 금액 한도 없이 수의계약이 가능한 법적 지위를 확보하고 있습니다.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- [4. 주요 제품 라인업 (정제된 리스트형)] -->
+    <!-- ========================================== -->
+    <section class="py-10">
+      <div class="mb-6 flex items-end justify-between">
+        <div>
+          <p class="text-xs font-bold text-brand-point tracking-widest uppercase mb-1">Products</p>
+          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">
+            나라장터 등록 제품 라인업
+          </h2>
+        </div>
+        <span class="text-xs text-slate-400 font-medium">조달식별번호 원클릭 복사</span>
+      </div>
+
+      <div class="divide-y divide-slate-100">
+        
+        <!-- 제품 1: SOLARO7-W -->
+        <div class="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-900">SOLARO7-W</span>
+              <span class="text-[11px] text-slate-500 font-medium">매립형 백색</span>
+              <span class="text-[11px] text-emerald-600 font-medium">1,392 mcd (가시거리 700m)</span>
+            </div>
+            <p class="text-xs text-slate-500 font-normal">
+              고속도로, 간선도로, 교량 구간 등 최고 수준의 시인성이 필요한 도로용
+            </p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="text-xs font-mono text-slate-400">25145037</span>
+            <button onclick="copyNumber('25145037', 'SOLARO7-W 조달식별번호가 복사되었습니다.')" class="btn-press text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors">
+              복사
+            </button>
+          </div>
+        </div>
+
+        <!-- 제품 2: SOLARO7-Y -->
+        <div class="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-900">SOLARO7-Y</span>
+              <span class="text-[11px] text-slate-500 font-medium">매립형 황색</span>
+              <span class="text-[11px] text-amber-600 font-medium">1,169 mcd (가시거리 500m)</span>
+            </div>
+            <p class="text-xs text-slate-500 font-normal">
+              중앙선, 급커브, 사고 다발 구간 등 위험 경고 및 노선 분리 구간용
+            </p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="text-xs font-mono text-slate-400">25145038</span>
+            <button onclick="copyNumber('25145038', 'SOLARO7-Y 조달식별번호가 복사되었습니다.')" class="btn-press text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors">
+              복사
+            </button>
+          </div>
+        </div>
+
+        <!-- 제품 3: SOLARO2-Y -->
+        <div class="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-900">SOLARO2-Y</span>
+              <span class="text-[11px] text-slate-500 font-medium">돌출형 황색</span>
+              <span class="text-[11px] text-amber-600 font-medium">1,082 mcd (가시거리 500m)</span>
+            </div>
+            <p class="text-xs text-slate-500 font-normal">
+              간편 앵커 고정식 시공이 필요한 도심 보행로, 어린이보호구역, 주차장 진입로용
+            </p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="text-xs font-mono text-slate-400">25501708</span>
+            <button onclick="copyNumber('25501708', 'SOLARO2-Y 조달식별번호가 복사되었습니다.')" class="btn-press text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors">
+              복사
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- [5. 바로 연결 링크] -->
+    <!-- ========================================== -->
+    <section class="py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <a href="mailto:cyshop@naver.com?subject=[솔라로]%20조달규격서%20및%20시험성적서%20요청" class="p-5 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-colors group block">
+          <span class="text-xs text-slate-400 font-medium block mb-1">공문 및 서류 요청</span>
+          <h3 class="text-sm font-bold text-slate-900 group-hover:text-brand-point flex items-center justify-between">
+            <span>시험성적서 & 규격서 이메일 수신</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-brand-point"></i>
+          </h3>
+          <p class="text-xs text-slate-500 mt-2 font-normal">cyshop@naver.com</p>
+        </a>
+
+        <a href="https://solaro.co.kr" target="_blank" class="p-5 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-colors group block">
+          <span class="text-xs text-slate-400 font-medium block mb-1">공식 웹사이트</span>
+          <h3 class="text-sm font-bold text-slate-900 group-hover:text-brand-point flex items-center justify-between">
+            <span>솔라로 공식 홈페이지 방문</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-brand-point"></i>
+          </h3>
+          <p class="text-xs text-slate-500 mt-2 font-normal">전국 시공 레퍼런스 확인</p>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- [6. 간결한 상담 및 견적 신청 폼 (화이트 미니멀)] -->
+    <!-- ========================================== -->
+    <section id="inquiry" class="py-12 border-t border-slate-100">
+      <div class="mb-8">
+        <p class="text-xs font-bold text-brand-point tracking-widest uppercase mb-1">Inquiry</p>
+        <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">
+          빠른 납품 및 시공 견적 문의
+        </h2>
+        <p class="text-xs text-slate-500 mt-1.5 font-normal">
+          연락처만 남겨주셔도 전문 엔지니어가 30분 내로 상세 규격서와 견적을 전달드립니다.
+        </p>
+      </div>
+
+      <form id="consultForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+        
+        <!-- 연락처 -->
+        <div class="space-y-1">
+          <label for="phone" class="block text-xs font-semibold text-slate-700">
+            연락처 <span class="text-brand-point">*</span>
+          </label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            required 
+            placeholder="010-0000-0000" 
+            class="w-full px-4 py-3 rounded-xl bg-slate-50 text-slate-900 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all border-0"
+          >
+        </div>
+
+        <!-- 성함 & 기관명 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label for="name" class="block text-xs font-semibold text-slate-700">
+              성함 / 직함 <span class="text-slate-400 font-normal">(선택)</span>
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder="홍길동 담당관" 
+              class="w-full px-4 py-3 rounded-xl bg-slate-50 text-slate-900 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all border-0"
+            >
+          </div>
+
+          <div class="space-y-1">
+            <label for="company" class="block text-xs font-semibold text-slate-700">
+              회사 / 기관명 <span class="text-slate-400 font-normal">(선택)</span>
+            </label>
+            <input 
+              type="text" 
+              id="company" 
+              name="company" 
+              placeholder="OO시청 도로과 / 시공사" 
+              class="w-full px-4 py-3 rounded-xl bg-slate-50 text-slate-900 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all border-0"
+            >
+          </div>
+        </div>
+
+        <!-- 문의내용 -->
+        <div class="space-y-1">
+          <label for="message" class="block text-xs font-semibold text-slate-700">
+            문의 내용 <span class="text-slate-400 font-normal">(선택)</span>
+          </label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="3" 
+            placeholder="설치 장소, 예상 수량, 조달 수의계약 상담 등" 
+            class="w-full p-4 rounded-xl bg-slate-50 text-slate-900 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all resize-none border-0"
+          ></textarea>
+        </div>
+
+        <!-- 개인정보 동의 -->
+        <div class="flex items-center space-x-2 pt-1">
+          <input 
+            type="checkbox" 
+            id="privacyConsent" 
+            checked 
+            required
+            class="w-4 h-4 rounded text-slate-900 focus:ring-slate-900 border-slate-300"
+          >
+          <label for="privacyConsent" class="text-xs text-slate-500 cursor-pointer">
+            견적 안내를 위한 연락처 수집에 동의합니다.
+          </label>
+        </div>
+
+        <!-- 전송 버튼 -->
+        <button 
+          type="submit" 
+          id="submitBtn" 
+          class="btn-press w-full py-4 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm tracking-tight transition-all flex items-center justify-center space-x-2"
+        >
+          <span id="btnText">무료 견적 및 제안서 신청하기</span>
+          <span id="btnSpinner" class="hidden">
+            <i class="fa-solid fa-circle-notch fa-spin text-sm"></i>
+          </span>
+        </button>
+      </form>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- [7. 기업 정보 푸터] -->
+    <!-- ========================================== -->
+    <footer class="pt-12 pb-16 border-t border-slate-100 text-xs text-slate-400 space-y-3 font-normal">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-600 font-medium">
+        <span>솔라로(주)</span>
+        <span>대표 010-5553-8250 / 031-217-2120</span>
+        <span>cyshop@naver.com</span>
+      </div>
+      <p class="leading-relaxed">
+        본사/연구소 : 경기도 수원시 영통구 삼성로 274 팩토리월드 805호<br>
+        중기부 성능인증(EPC) 획득 · 국산화율 92% 직접생산확인증명 보유
+      </p>
+      <p class="pt-2 text-[11px] text-slate-400">
+        © 2026 SOLARO Inc. All rights reserved.
+      </p>
+    </footer>
+
+  </main>
+
+
+  <!-- ========================================== -->
+  <!-- [하단 모바일 고정 바 (클린 화이트 미니멀)] -->
+  <!-- ========================================== -->
+  <div class="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-100 py-3 px-5">
+    <div class="max-w-2xl mx-auto flex items-center gap-3">
+      <a href="tel:01055538250" class="btn-press flex-1 py-3 text-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs transition-colors">
+        <i class="fa-solid fa-phone text-[11px] mr-1 text-slate-500"></i>
+        <span>전화 상담</span>
+      </a>
+      <a href="#inquiry" class="btn-press flex-1 py-3 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors">
+        <span>견적서 요청</span>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- [심플 토스트 알림] -->
+  <!-- ========================================== -->
+  <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-medium shadow-lg pointer-events-none transition-all duration-300 opacity-0 -translate-y-2">
+    <span id="toastMsg">복사되었습니다.</span>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- [Vanilla JavaScript: Google CRM 및 인터랙션] -->
+  <!-- ========================================== -->
+  <script>
+    /**
+     * 구글 시트 연동 URL
+     * 구글 앱스 스크립트 웹앱 배포 후 URL을 아래에 입력하시면 실시간 저장됩니다.
+     */
+    const SCRIPT_URL = '여기에_구글_웹앱_URL_입력';
+
+    // 토스트 표시
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = message;
+      toast.classList.remove('opacity-0', '-translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', '-translate-y-2');
+      }, 2500);
+    }
+
+    // 클립보드 번호 복사
+    async function copyNumber(text, msg) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.left = "-999999px";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          document.execCommand('copy');
+          textArea.remove();
+        }
+        showToast(msg || '복사되었습니다.');
+      } catch (err) {
+        showToast('복사에 실패했습니다.');
+      }
+    }
+
+    // CRM 폼 제출 처리
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const phone = document.getElementById('phone').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnSpinner = document.getElementById('btnSpinner');
+
+      if (!phone) {
+        showToast('연락처를 입력해 주세요.');
+        document.getElementById('phone').focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      btnText.innerText = '신청 접수 중...';
+      btnSpinner.classList.remove('hidden');
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        phone: phone,
+        name: name || '미기재',
+        company: company || '미기재',
+        message: message || '상담 요청',
+        referrer: window.location.href
+      };
+
+      if (SCRIPT_URL && SCRIPT_URL !== '여기에_구글_웹앱_URL_입력') {
+        try {
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          showToast('성공적으로 접수되었습니다. 곧 연락드리겠습니다.');
+          document.getElementById('consultForm').reset();
+        } catch (e) {
+          showToast('접수 지연: 직통전화(010-5553-8250)로 문의 바랍니다.');
+        } finally {
+          submitBtn.disabled = false;
+          btnText.innerText = '무료 견적 및 제안서 신청하기';
+          btnSpinner.classList.add('hidden');
+        }
+      } else {
+        setTimeout(() => {
+          showToast('접수되었습니다. (데모 모드) 엔지니어가 곧 연락드립니다.');
+          document.getElementById('consultForm').reset();
+          submitBtn.disabled = false;
+          btnText.innerText = '무료 견적 및 제안서 신청하기';
+          btnSpinner.classList.add('hidden');
+        }, 600);
+      }
+    }
+
+    // 전화번호 자동 하이픈
+    document.getElementById('phone').addEventListener('input', function(e) {
+      let val = e.target.value.replace(/[^0-9]/g, '');
+      if (val.length > 3 && val.length <= 7) {
+        e.target.value = val.slice(0, 3) + '-' + val.slice(3);
+      } else if (val.length > 7) {
+        e.target.value = val.slice(0, 3) + '-' + val.slice(3, 7) + '-' + val.slice(7, 11);
+      } else {
+        e.target.value = val;
+      }
+    });
+  </script>
+</body>
+</html>
