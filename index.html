@@ -97,28 +97,59 @@
   <main class="max-w-2xl mx-auto px-5">
 
     <!-- ========================================== -->
+    <!-- [0. 최상단 실제 주행 비교 영상 (페이지 진입 즉시 인라인 자동재생)] -->
+    <!-- ========================================== -->
+    <section class="pt-6 pb-4">
+      <!-- 영상 상단 헤드라인 & 뱃지 -->
+      <div class="flex items-center justify-between mb-2.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-point/10 text-brand-point text-xs font-bold tracking-tight">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-point animate-pulse"></span>
+          실제 야간 주행 영상
+        </span>
+        <span class="text-[11px] text-slate-400 font-medium">소리 켜기 가능</span>
+      </div>
+
+      <!-- 영상 컨테이너: playsinline=1, mute=1, autoplay=1 로 브라우저 이탈 없이 즉시 실행 -->
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-md border border-slate-100">
+        <iframe 
+          class="absolute inset-0 w-full h-full"
+          src="https://www.youtube.com/embed/lUCmgHLysz8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=lUCmgHLysz8&rel=0&modestbranding=1" 
+          title="솔라로 도로표지병 실제 주행 시인성 비교" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="text-[11px] text-slate-400 mt-2 flex items-center justify-between">
+        <span>* 폭우 속 일반 반사체 vs 솔라로(가시거리 700m) 비교</span>
+        <span class="text-slate-500 font-medium">눈부심 방지 특허 렌즈</span>
+      </p>
+    </section>
+
+
+    <!-- ========================================== -->
     <!-- [1. 메인 히어로 섹션] -->
     <!-- ========================================== -->
-    <section class="pt-14 pb-12 text-left sm:text-center">
+    <section class="pt-6 pb-8 text-left sm:text-center">
       <!-- 서브 태그 -->
-      <p class="text-sm font-bold text-brand-point tracking-wide mb-3">
+      <p class="text-xs sm:text-sm font-bold text-brand-point tracking-wide mb-2.5">
         중기부 성능인증(EPC) 획득 · 공공조달 수의계약 1순위
       </p>
 
       <!-- 메인 카피 -->
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight mb-5">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight mb-4">
         야간 빗길·안갯길,<br class="hidden sm:block">
         30배 더 선명한 도로 유도선
       </h1>
 
       <!-- 설명 문구 -->
-      <p class="text-base text-slate-500 leading-relaxed max-w-xl mx-auto mb-8 font-normal">
+      <p class="text-sm sm:text-base text-slate-500 leading-relaxed max-w-xl mx-auto mb-6 font-normal">
         솔라로(주)는 국산화율 92%의 자체 기술력으로 완성된 대한민국 프리미엄 태양광 도로표지병 전문 제조기업입니다. 
         비가 쏟아져도 꺼지지 않는 700m 전방 시인성으로 도로의 안전을 책임집니다.
       </p>
 
       <!-- 퀵 액션 버튼군 -->
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
         <a href="#inquiry" class="btn-press inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-6 py-3.5 rounded-xl transition-all shadow-sm">
           <span>시험성적서 및 견적 요청</span>
           <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -132,40 +163,44 @@
 
 
     <!-- ========================================== -->
-    <!-- [2. 실제 주행 비교 영상 (클린 프레임)] -->
+    <!-- [2. 솔라로만의 품질약속 3년 A/S 공감 배너] -->
     <!-- ========================================== -->
-    <section class="py-6">
-      <div class="space-y-3 mb-4">
-        <h2 class="text-xl font-bold text-slate-900 tracking-tight">
-          실제 주행 영상으로 확인하는 압도적 시인성
-        </h2>
-        <p class="text-sm text-slate-500 font-normal">
-          우천 시 일반 반사체 도로와 솔라로 자체발광 설치 구간의 차이를 직접 눈으로 확인해 보세요.
-        </p>
-      </div>
+    <section class="py-4">
+      <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-lg relative overflow-hidden">
+        <!-- 배경 장식 아이콘 -->
+        <div class="absolute -right-4 -bottom-4 text-white/5 text-8xl pointer-events-none">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
 
-      <!-- 영상 컨테이너 -->
-      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
-        <iframe 
-          class="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/lUCmgHLysz8?rel=0&modestbranding=1" 
-          title="솔라로 도로표지병 실제 주행 시인성 비교" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen>
-        </iframe>
+        <div class="relative z-10 space-y-3">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-point text-white text-xs font-bold tracking-tight">
+            <i class="fa-solid fa-award"></i>
+            솔라로만의 품질약속 3년 A/S
+          </div>
+
+          <h3 class="text-lg sm:text-xl font-extrabold tracking-tight text-white leading-snug">
+            "어디를 가든 1년 안에 우수수...<br>
+            2년 안에 전원 아웃되는 도로표지병, 직접 경험하시지 않나요?"
+          </h3>
+
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+            기껏 예산 들여 설치했더니 비 새고 깨져서 불 꺼진 표지병들...<br>
+            <span class="text-amber-300 font-semibold">예산도 아깝고, 도로 볼상도 사납죠^^</span>
+          </p>
+
+          <div class="pt-2 border-t border-white/10 text-xs text-slate-300 leading-relaxed">
+            솔라로는 <span class="text-white font-bold underline decoration-brand-point underline-offset-4">50톤 내하중 주조</span>와 <span class="text-white font-bold underline decoration-brand-point underline-offset-4">IP69 완전방수 수밀 특허</span>로 침수·파손 걱정이 없습니다. 대한민국 업계 유일, <span class="text-brand-point font-extrabold text-sm">36개월(3년) 무상 보증</span>으로 관리자의 고민을 완전히 덜어드립니다.
+          </div>
+        </div>
       </div>
-      <p class="text-xs text-slate-400 mt-2.5">
-        * 가시거리 500m~700m 이상 확보 / 특수 광학렌즈 설계로 운전자 눈부심 방지
-      </p>
     </section>
 
 
     <!-- ========================================== -->
     <!-- [3. 숫자로 증명하는 솔라로의 기술력 (미니멀 타이포)] -->
     <!-- ========================================== -->
-    <section class="py-14">
-      <div class="mb-10">
+    <section class="py-12">
+      <div class="mb-8">
         <p class="text-xs font-bold text-brand-point tracking-widest uppercase mb-2">Performance</p>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
           비교할 수 없는 4가지 절대 기준
@@ -211,9 +246,9 @@
           <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             3<span class="text-base sm:text-lg font-bold text-slate-400 ml-1">년</span>
           </div>
-          <h3 class="text-sm font-bold text-slate-900">업계 유일 36개월 무상 A/S</h3>
+          <h3 class="text-sm font-bold text-slate-900">솔라로만의 품질약속 3년 A/S</h3>
           <p class="text-xs text-slate-500 leading-relaxed font-normal">
-            폭발 위험이 없는 친환경 Ni-MH(니켈수소) 배터리를 탑재하여 6년 이상의 수명과 철저한 품질 보증을 제공합니다.
+            폭발 위험이 없는 친환경 Ni-MH 배터리와 특허 수밀 설계로 1~2년 만에 꺼지는 저가품과 달리 36개월 무상 A/S를 완벽 보증합니다.
           </p>
         </div>
       </div>
