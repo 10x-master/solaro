@@ -447,14 +447,26 @@
         <span>솔라로(주)</span>
         <span>대표 010-5553-8250 / 031-217-2120</span>
         <span>cyshop@naver.com</span>
+        <span>cyshop.kakao.com@gmail.com</span>
       </div>
       <p class="leading-relaxed">
         본사/연구소 : 경기도 수원시 영통구 삼성로 274 팩토리월드 805호<br>
         중기부 성능인증(EPC) 획득 · 국산화율 92% 직접생산확인증명 보유
       </p>
-      <p class="pt-2 text-[11px] text-slate-400">
-        © 2026 SOLARO Inc. All rights reserved.
-      </p>
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-2">
+        <p class="text-[11px] text-slate-400">
+          © 2026 SOLARO Inc. All rights reserved.
+        </p>
+        <!-- 관리자 페이지 진입 (제일 하단 우측 아주 작게 표시) -->
+        <button 
+          type="button" 
+          onclick="openAdminAuthModal()" 
+          class="text-[10px] text-slate-300 hover:text-slate-600 transition-colors p-1"
+          title="관리자 설정"
+        >
+          admin
+        </button>
+      </div>
     </footer>
 
   </main>
@@ -479,20 +491,291 @@
   <!-- ========================================== -->
   <!-- [심플 토스트 알림] -->
   <!-- ========================================== -->
-  <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-medium shadow-lg pointer-events-none transition-all duration-300 opacity-0 -translate-y-2">
+  <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] px-4 py-2.5 rounded-full bg-slate-900 text-white text-xs font-medium shadow-xl pointer-events-none transition-all duration-300 opacity-0 -translate-y-2">
     <span id="toastMsg">복사되었습니다.</span>
   </div>
 
 
   <!-- ========================================== -->
-  <!-- [Vanilla JavaScript: Google CRM 및 인터랙션] -->
+  <!-- [관리자 비밀번호 확인 모달 (기본: 1234)] -->
+  <!-- ========================================== -->
+  <div id="adminAuthModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-lock text-brand-point"></i>
+          <span>관리자 인증</span>
+        </h3>
+        <button type="button" onclick="closeAdminAuthModal()" class="text-slate-400 hover:text-slate-700 text-sm p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-500">
+        관리자 페이지 접근을 위해 비밀번호를 입력해 주세요. (초기 비밀번호: 1234)
+      </p>
+
+      <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+        <input 
+          type="password" 
+          id="adminPwInput" 
+          placeholder="비밀번호 입력" 
+          required 
+          autofocus
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 text-slate-900 text-sm border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900"
+        >
+        <div class="flex gap-2">
+          <button type="button" onclick="closeAdminAuthModal()" class="btn-press flex-1 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200">
+            취소
+          </button>
+          <button type="submit" class="btn-press flex-1 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800">
+            로그인
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- [관리자 대시보드 모달] -->
+  <!-- ========================================== -->
+  <div id="adminDashboardModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-xl max-h-[90vh] shadow-2xl flex flex-col overflow-hidden">
+      
+      <!-- 모달 헤더 -->
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+        <div>
+          <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            SOLARO 관리자 설정
+          </h2>
+          <p class="text-[11px] text-slate-500 mt-0.5">상담신청 폼 연동 및 관리자 설정을 제어합니다.</p>
+        </div>
+        <button type="button" onclick="closeAdminDashboard()" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+
+      <!-- 탭 메뉴 -->
+      <div class="flex border-b border-slate-100 px-6 bg-white gap-4 text-xs font-bold text-slate-500">
+        <button type="button" id="tabBtn-sheet" onclick="switchAdminTab('sheet')" class="py-3 border-b-2 border-slate-900 text-slate-900 transition-colors">
+          구글 시트 & 계정 연동
+        </button>
+        <button type="button" id="tabBtn-leads" onclick="switchAdminTab('leads')" class="py-3 border-b-2 border-transparent hover:text-slate-900 transition-colors flex items-center gap-1.5">
+          <span>접수 내역</span>
+          <span id="leadCountBadge" class="bg-brand-point text-white text-[10px] px-1.5 py-0.2 rounded-full">0</span>
+        </button>
+        <button type="button" id="tabBtn-pw" onclick="switchAdminTab('pw')" class="py-3 border-b-2 border-transparent hover:text-slate-900 transition-colors">
+          비밀번호 변경
+        </button>
+      </div>
+
+      <!-- 모달 본문 (스크롤) -->
+      <div class="p-6 overflow-y-auto space-y-6 text-xs text-slate-700 flex-1">
+        
+        <!-- [탭 1: 구글 시트 & 계정 연동] -->
+        <div id="tabContent-sheet" class="space-y-5">
+          
+          <!-- 구글 로그인 및 연동 상태 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-900 flex items-center gap-1.5">
+                <i class="fa-brands fa-google text-red-500"></i>
+                구글 계정 연동
+              </span>
+              <span id="googleLoginStatus" class="text-[11px] text-slate-500 font-medium">연결 대기</span>
+            </div>
+            
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              구글 시트에 접근하거나 알림을 관리하기 위해 담당자 구글 계정으로 로그인합니다.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <a 
+                href="https://accounts.google.com/signin" 
+                target="_blank" 
+                rel="noopener" 
+                class="btn-press inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-800 font-semibold text-xs shadow-sm hover:bg-slate-50"
+              >
+                <i class="fa-brands fa-google text-red-500"></i>
+                <span>구글 로그인 바로가기</span>
+              </a>
+              <a 
+                id="googleSheetDirectLink" 
+                href="https://sheets.google.com" 
+                target="_blank" 
+                rel="noopener" 
+                class="btn-press inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-50 text-emerald-700 font-semibold text-xs border border-emerald-100 hover:bg-emerald-100"
+              >
+                <i class="fa-solid fa-table text-emerald-600"></i>
+                <span>구글 시트 바로 열기</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 설정 폼 -->
+          <form onsubmit="saveAdminSettings(event)" class="space-y-4">
+            
+            <!-- 관리자 알림 이메일 -->
+            <div class="space-y-1">
+              <label class="block font-bold text-slate-900">
+                관리자 알림 이메일
+              </label>
+              <input 
+                type="email" 
+                id="cfgAdminEmail" 
+                placeholder="cyshop.kakao.com@gmail.com" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 text-slate-900 border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900"
+              >
+              <p class="text-[11px] text-slate-400">
+                신규 견적/상담 요청 시 수신할 관리자 이메일 주소입니다.
+              </p>
+            </div>
+
+            <!-- 구글 시트 웹앱 URL -->
+            <div class="space-y-1">
+              <label class="block font-bold text-slate-900">
+                구글 앱스 스크립트 웹앱 URL (Google Apps Script Web App)
+              </label>
+              <input 
+                type="url" 
+                id="cfgScriptUrl" 
+                placeholder="https://script.google.com/macros/s/.../exec" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 text-slate-900 font-mono text-[11px] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900"
+              >
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                구글 스프레드시트의 <b>[확장 프로그램 > Apps Script]</b>에서 배포된 웹 앱 URL을 입력하면 실시간으로 자동 저장됩니다.
+              </p>
+            </div>
+
+            <!-- 구글 스프레드시트 확인 링크 -->
+            <div class="space-y-1">
+              <label class="block font-bold text-slate-900">
+                구글 스프레드시트 문서 링크 (선택)
+              </label>
+              <input 
+                type="url" 
+                id="cfgSheetDocUrl" 
+                placeholder="https://docs.google.com/spreadsheets/d/.../edit" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 text-slate-900 text-[11px] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900"
+              >
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <button 
+                type="button" 
+                onclick="testSheetConnection()" 
+                class="btn-press px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs flex items-center gap-1.5"
+              >
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                <span>연동 테스트</span>
+              </button>
+
+              <button 
+                type="submit" 
+                class="btn-press px-5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs"
+              >
+                설정 저장하기
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+
+        <!-- [탭 2: 접수 내역 관리] -->
+        <div id="tabContent-leads" class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-900">실시간 접수 목록 (로컬 백업)</span>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="exportLeadsToCSV()" class="btn-press text-[11px] px-2.5 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">
+                <i class="fa-solid fa-file-csv mr-1"></i>CSV 내보내기
+              </button>
+              <button type="button" onclick="clearLeadsData()" class="btn-press text-[11px] px-2.5 py-1.5 rounded bg-red-50 hover:bg-red-100 text-red-600 font-medium">
+                초기화
+              </button>
+            </div>
+          </div>
+
+          <div id="leadsListContainer" class="space-y-2 max-h-72 overflow-y-auto pr-1">
+            <!-- 접수 내역 목록 렌더링 -->
+          </div>
+        </div>
+
+
+        <!-- [탭 3: 비밀번호 변경] -->
+        <div id="tabContent-pw" class="space-y-4 hidden">
+          <p class="text-xs text-slate-500">
+            관리자 페이지 접속 비밀번호를 안전한 번호로 변경할 수 있습니다. (기본 비밀번호: 1234)
+          </p>
+
+          <form onsubmit="handlePasswordChange(event)" class="space-y-3">
+            <div class="space-y-1">
+              <label class="block font-semibold text-slate-900">현재 비밀번호</label>
+              <input 
+                type="password" 
+                id="currPwInput" 
+                required 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 text-slate-900 border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 text-xs"
+              >
+            </div>
+
+            <div class="space-y-1">
+              <label class="block font-semibold text-slate-900">새 비밀번호</label>
+              <input 
+                type="password" 
+                id="newPwInput" 
+                required 
+                placeholder="4자리 이상" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 text-slate-900 border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 text-xs"
+              >
+            </div>
+
+            <div class="space-y-1">
+              <label class="block font-semibold text-slate-900">새 비밀번호 확인</label>
+              <input 
+                type="password" 
+                id="confirmPwInput" 
+                required 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 text-slate-900 border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 text-xs"
+              >
+            </div>
+
+            <div class="pt-2 text-right">
+              <button type="submit" class="btn-press px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs">
+                비밀번호 변경 완료
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- [Vanilla JavaScript: 구글 연동 및 관리자 기능] -->
   <!-- ========================================== -->
   <script>
-    /**
-     * 구글 시트 연동 URL
-     * 구글 앱스 스크립트 웹앱 배포 후 URL을 아래에 입력하시면 실시간 저장됩니다.
-     */
-    const SCRIPT_URL = '여기에_구글_웹앱_URL_입력';
+    // 스토리지 키 정의
+    const STORAGE_KEYS = {
+      ADMIN_PW: 'solaro_admin_password',
+      SCRIPT_URL: 'solaro_google_script_url',
+      SHEET_DOC_URL: 'solaro_google_sheet_doc_url',
+      ADMIN_EMAIL: 'solaro_admin_email',
+      LEADS: 'solaro_inquiry_leads'
+    };
+
+    // 초기값 세팅 (기본 패스워드: 1234, 기본 이메일: cyshop.kakao.com@gmail.com)
+    if (!localStorage.getItem(STORAGE_KEYS.ADMIN_PW)) {
+      localStorage.setItem(STORAGE_KEYS.ADMIN_PW, '1234');
+    }
+    if (!localStorage.getItem(STORAGE_KEYS.ADMIN_EMAIL)) {
+      localStorage.setItem(STORAGE_KEYS.ADMIN_EMAIL, 'cyshop.kakao.com@gmail.com');
+    }
 
     // 토스트 표시
     function showToast(message) {
@@ -530,7 +813,205 @@
       }
     }
 
-    // CRM 폼 제출 처리
+    // ==========================================
+    // [관리자 모달 및 인증 제어]
+    // ==========================================
+    function openAdminAuthModal() {
+      document.getElementById('adminPwInput').value = '';
+      document.getElementById('adminAuthModal').classList.remove('hidden');
+      setTimeout(() => document.getElementById('adminPwInput').focus(), 100);
+    }
+
+    function closeAdminAuthModal() {
+      document.getElementById('adminAuthModal').classList.add('hidden');
+    }
+
+    function handleAdminLogin(event) {
+      event.preventDefault();
+      const inputPw = document.getElementById('adminPwInput').value;
+      const currentPw = localStorage.getItem(STORAGE_KEYS.ADMIN_PW) || '1234';
+
+      if (inputPw === currentPw) {
+        closeAdminAuthModal();
+        openAdminDashboard();
+      } else {
+        showToast('비밀번호가 일치하지 않습니다.');
+        document.getElementById('adminPwInput').select();
+      }
+    }
+
+    function openAdminDashboard() {
+      // 설정값 불러오기
+      document.getElementById('cfgAdminEmail').value = localStorage.getItem(STORAGE_KEYS.ADMIN_EMAIL) || 'cyshop.kakao.com@gmail.com';
+      document.getElementById('cfgScriptUrl').value = localStorage.getItem(STORAGE_KEYS.SCRIPT_URL) || '';
+      
+      const docUrl = localStorage.getItem(STORAGE_KEYS.SHEET_DOC_URL) || 'https://sheets.google.com';
+      document.getElementById('cfgSheetDocUrl').value = localStorage.getItem(STORAGE_KEYS.SHEET_DOC_URL) || '';
+      document.getElementById('googleSheetDirectLink').href = docUrl;
+
+      renderLeads();
+      switchAdminTab('sheet');
+      document.getElementById('adminDashboardModal').classList.remove('hidden');
+    }
+
+    function closeAdminDashboard() {
+      document.getElementById('adminDashboardModal').classList.add('hidden');
+    }
+
+    function switchAdminTab(tab) {
+      const tabs = ['sheet', 'leads', 'pw'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tabBtn-${t}`);
+        const content = document.getElementById(`tabContent-${t}`);
+        if (t === tab) {
+          btn.classList.add('border-slate-900', 'text-slate-900');
+          btn.classList.remove('border-transparent');
+          content.classList.remove('hidden');
+        } else {
+          btn.classList.remove('border-slate-900', 'text-slate-900');
+          btn.classList.add('border-transparent');
+          content.classList.add('hidden');
+        }
+      });
+    }
+
+    function saveAdminSettings(event) {
+      event.preventDefault();
+      const email = document.getElementById('cfgAdminEmail').value.trim();
+      const scriptUrl = document.getElementById('cfgScriptUrl').value.trim();
+      const docUrl = document.getElementById('cfgSheetDocUrl').value.trim();
+
+      localStorage.setItem(STORAGE_KEYS.ADMIN_EMAIL, email || 'cyshop.kakao.com@gmail.com');
+      localStorage.setItem(STORAGE_KEYS.SCRIPT_URL, scriptUrl);
+      localStorage.setItem(STORAGE_KEYS.SHEET_DOC_URL, docUrl);
+
+      if (docUrl) {
+        document.getElementById('googleSheetDirectLink').href = docUrl;
+      }
+
+      showToast('관리자 설정이 저장되었습니다.');
+    }
+
+    // 비밀번호 변경 처리
+    function handlePasswordChange(event) {
+      event.preventDefault();
+      const currentPw = localStorage.getItem(STORAGE_KEYS.ADMIN_PW) || '1234';
+      const inputCurr = document.getElementById('currPwInput').value;
+      const inputNew = document.getElementById('newPwInput').value;
+      const inputConfirm = document.getElementById('confirmPwInput').value;
+
+      if (inputCurr !== currentPw) {
+        showToast('현재 비밀번호가 올바르지 않습니다.');
+        return;
+      }
+      if (inputNew.length < 4) {
+        showToast('새 비밀번호는 4자리 이상이어야 합니다.');
+        return;
+      }
+      if (inputNew !== inputConfirm) {
+        showToast('새 비밀번호 확인이 일치하지 않습니다.');
+        return;
+      }
+
+      localStorage.setItem(STORAGE_KEYS.ADMIN_PW, inputNew);
+      showToast('비밀번호가 성공적으로 변경되었습니다.');
+      document.getElementById('currPwInput').value = '';
+      document.getElementById('newPwInput').value = '';
+      document.getElementById('confirmPwInput').value = '';
+    }
+
+    // 구글 시트 연동 테스트
+    async function testSheetConnection() {
+      const scriptUrl = document.getElementById('cfgScriptUrl').value.trim();
+      if (!scriptUrl) {
+        showToast('먼저 구글 앱스 스크립트 웹앱 URL을 입력해 주세요.');
+        return;
+      }
+
+      showToast('연결 테스트를 전송하는 중...');
+      try {
+        await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            phone: '010-0000-0000 (테스트)',
+            name: '관리자 테스트',
+            company: 'SOLARO 시스템',
+            message: '연동 확인용 테스트 메시지입니다.',
+            referrer: '관리자 페이지'
+          })
+        });
+        showToast('구글 시트로 테스트 전송이 완료되었습니다!');
+      } catch (e) {
+        showToast('전송 실패: 웹앱 권한 설정을 확인해 주세요.');
+      }
+    }
+
+    // 접수 내역 렌더링
+    function renderLeads() {
+      const leads = JSON.parse(localStorage.getItem(STORAGE_KEYS.LEADS) || '[]');
+      const container = document.getElementById('leadsListContainer');
+      const badge = document.getElementById('leadCountBadge');
+      badge.innerText = leads.length;
+
+      if (leads.length === 0) {
+        container.innerHTML = `
+          <div class="py-8 text-center text-slate-400">
+            <i class="fa-regular fa-folder-open text-2xl mb-2"></i>
+            <p>아직 접수된 상담/견적 내역이 없습니다.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = leads.map((lead, idx) => `
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex flex-col gap-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-900">${lead.name || '미기재'} · <a href="tel:${lead.phone}" class="text-brand-point underline">${lead.phone}</a></span>
+            <span class="text-[10px] text-slate-400">${lead.date || ''}</span>
+          </div>
+          <div class="text-[11px] text-slate-600">
+            <span class="font-medium text-slate-500">${lead.company ? '[' + lead.company + ']' : ''}</span> ${lead.message || '문의내용 없음'}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function exportLeadsToCSV() {
+      const leads = JSON.parse(localStorage.getItem(STORAGE_KEYS.LEADS) || '[]');
+      if (leads.length === 0) {
+        showToast('내보낼 데이터가 없습니다.');
+        return;
+      }
+
+      let csv = "\uFEFF일시,연락처,성함,기관명,문의내용\n";
+      leads.forEach(l => {
+        csv += `"${l.date}","${l.phone}","${l.name}","${l.company}","${(l.message||'').replace(/"/g, '""')}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `solaro_leads_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function clearLeadsData() {
+      if (confirm('접수된 내역을 모두 삭제하시겠습니까?')) {
+        localStorage.removeItem(STORAGE_KEYS.LEADS);
+        renderLeads();
+        showToast('접수 내역이 초기화되었습니다.');
+      }
+    }
+
+    // ==========================================
+    // [자체 상담/견적 신청 폼 처리]
+    // ==========================================
     async function handleFormSubmit(event) {
       event.preventDefault();
 
@@ -552,27 +1033,39 @@
       btnText.innerText = '신청 접수 중...';
       btnSpinner.classList.remove('hidden');
 
+      const kstDate = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
       const payload = {
         timestamp: new Date().toISOString(),
+        date: kstDate,
         phone: phone,
         name: name || '미기재',
         company: company || '미기재',
-        message: message || '상담 요청',
-        referrer: window.location.href
+        message: message || '견적 및 상담 요청',
+        referrer: window.location.href,
+        adminEmail: localStorage.getItem(STORAGE_KEYS.ADMIN_EMAIL) || 'cyshop.kakao.com@gmail.com'
       };
 
-      if (SCRIPT_URL && SCRIPT_URL !== '여기에_구글_웹앱_URL_입력') {
+      // 1. 브라우저 로컬 스토리지에 접수 내역 자동 보관
+      const savedLeads = JSON.parse(localStorage.getItem(STORAGE_KEYS.LEADS) || '[]');
+      savedLeads.unshift(payload);
+      localStorage.setItem(STORAGE_KEYS.LEADS, JSON.stringify(savedLeads.slice(0, 100))); // 최근 100건 보관
+
+      // 2. 구글 시트 연동 여부 확인 및 전송
+      const targetScriptUrl = localStorage.getItem(STORAGE_KEYS.SCRIPT_URL);
+
+      if (targetScriptUrl) {
         try {
-          await fetch(SCRIPT_URL, {
+          await fetch(targetScriptUrl, {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
           });
-          showToast('성공적으로 접수되었습니다. 곧 연락드리겠습니다.');
+          showToast('성공적으로 접수되었습니다. 곧 담당 엔지니어가 연락드리겠습니다.');
           document.getElementById('consultForm').reset();
         } catch (e) {
-          showToast('접수 지연: 직통전화(010-5553-8250)로 문의 바랍니다.');
+          showToast('접수 완료(로컬 저장). 구글 시트 전송 상태를 확인해 주세요.');
+          document.getElementById('consultForm').reset();
         } finally {
           submitBtn.disabled = false;
           btnText.innerText = '무료 견적 및 제안서 신청하기';
@@ -580,16 +1073,16 @@
         }
       } else {
         setTimeout(() => {
-          showToast('접수되었습니다. (데모 모드) 엔지니어가 곧 연락드립니다.');
+          showToast('신청이 완료되었습니다! 전문 엔지니어가 빠르게 안내드리겠습니다.');
           document.getElementById('consultForm').reset();
           submitBtn.disabled = false;
           btnText.innerText = '무료 견적 및 제안서 신청하기';
           btnSpinner.classList.add('hidden');
-        }, 600);
+        }, 500);
       }
     }
 
-    // 전화번호 자동 하이픈
+    // 전화번호 자동 하이픈 포맷
     document.getElementById('phone').addEventListener('input', function(e) {
       let val = e.target.value.replace(/[^0-9]/g, '');
       if (val.length > 3 && val.length <= 7) {
