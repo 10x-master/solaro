@@ -97,7 +97,7 @@
   <main class="max-w-2xl mx-auto px-5">
 
     <!-- ========================================== -->
-    <!-- [0. 최상단 실제 주행 비교 영상 (페이지 진입 즉시 인라인 자동재생)] -->
+    <!-- [0. 최상단 실제 주행 비교 영상 (클릭 시 재생)] -->
     <!-- ========================================== -->
     <section class="pt-6 pb-4">
       <!-- 영상 상단 헤드라인 & 뱃지 -->
@@ -112,19 +112,37 @@
             서울 통일로81 ~ 독립문역사거리 구간
           </span>
         </div>
-        <span class="text-[11px] text-slate-400 font-medium hidden sm:inline">소리 켜기 가능</span>
+        <span class="text-[11px] text-slate-400 font-medium">클릭 시 즉시 재생</span>
       </div>
 
-      <!-- 영상 컨테이너: playsinline=1, mute=1, autoplay=1 로 브라우저 이탈 없이 즉시 실행 -->
-      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-md border border-slate-100 group">
-        <iframe 
-          class="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/lUCmgHLysz8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=lUCmgHLysz8&rel=0&modestbranding=1" 
-          title="솔라로 도로표지병 실제 주행 시인성 비교 - 서울 통일로81~독립문역사거리 구간" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen>
-        </iframe>
+      <!-- 영상 컨테이너 (클릭 시 인라인 재생) -->
+      <div id="videoContainer" class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-md border border-slate-100 group">
+        
+        <!-- 클릭 전 썸네일 & 플레이 버튼 커버 -->
+        <div 
+          id="videoPoster" 
+          onclick="startVideoPlay()" 
+          class="absolute inset-0 z-10 cursor-pointer flex flex-col items-center justify-center bg-cover bg-center transition-all duration-300"
+          style="background-image: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.65)), url('https://img.youtube.com/vi/lUCmgHLysz8/maxresdefault.jpg');"
+        >
+          <!-- 중앙 원형 플레이 버튼 -->
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brand-point/90 hover:bg-brand-point text-white flex items-center justify-center shadow-2xl transition-transform duration-300 group-hover:scale-110 relative">
+            <span class="absolute inset-0 rounded-full bg-brand-point/40 animate-ping pointer-events-none"></span>
+            <i class="fa-solid fa-play text-xl sm:text-2xl ml-1"></i>
+          </div>
+
+          <div class="mt-4 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-sm text-white text-xs font-semibold tracking-tight shadow-sm flex items-center gap-1.5">
+            <i class="fa-regular fa-circle-play text-brand-point"></i>
+            <span>영상 재생하기 (클릭)</span>
+          </div>
+
+          <p class="text-[11px] text-slate-300 mt-2 font-medium">
+            비교 주행 영상 (가시거리 700m 차이 확인)
+          </p>
+        </div>
+
+        <!-- iframe 플레이스홀더 -->
+        <div id="videoPlayerHolder" class="w-full h-full"></div>
       </div>
 
       <!-- 영상 하단 상세 안내 -->
@@ -808,6 +826,30 @@
   <!-- [Vanilla JavaScript: 구글 연동 및 관리자 기능] -->
   <!-- ========================================== -->
   <script>
+    // 동영상 클릭 시 재생
+    function startVideoPlay() {
+      const poster = document.getElementById('videoPoster');
+      const holder = document.getElementById('videoPlayerHolder');
+      if (!holder) return;
+
+      // iframe 동적 삽입
+      holder.innerHTML = `
+        <iframe 
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/lUCmgHLysz8?autoplay=1&playsinline=1&rel=0&modestbranding=1" 
+          title="솔라로 도로표지병 실제 주행 시인성 비교 - 서울 통일로81~독립문역사거리 구간" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      `;
+
+      if (poster) {
+        poster.style.opacity = '0';
+        setTimeout(() => poster.remove(), 250);
+      }
+    }
+
     // 스토리지 키 정의
     const STORAGE_KEYS = {
       ADMIN_PW: 'solaro_admin_password',
