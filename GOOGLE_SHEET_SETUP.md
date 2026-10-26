@@ -30,19 +30,41 @@ function doPost(e) {
     // 한국 시간(KST)으로 타임스탬프 포맷
     var formattedDate = Utilities.formatDate(new Date(), "Asia/Seoul", "yyyy-MM-dd HH:mm:ss");
     
-    // 시트에 새 행 추가
+    var phone = data.phone || '';
+    var name = data.name || '미기재';
+    var company = data.company || '미기재';
+    var message = data.message || '상담 요청';
+    var adminEmail = data.adminEmail || 'cyshop.kakao.com@gmail.com';
+    
+    // 1. 구글 스프레드시트에 새 행 추가
     sheet.appendRow([
       formattedDate,
-      data.phone || '',
-      data.name || '',
-      data.company || '',
-      data.message || '',
+      phone,
+      name,
+      company,
+      message,
       data.referrer || ''
     ]);
     
+    // 2. 관리자 이메일로 실시간 알림 메일 발송
+    try {
+      var subject = "[솔라로] 신규 견적/상담 요청 접수 - " + name + " (" + phone + ")";
+      var body = "■ 솔라로(SOLARO) 신규 상담 요청 내역 ■\n\n" +
+                 "• 접수일시: " + formattedDate + "\n" +
+                 "• 연락처: " + phone + "\n" +
+                 "• 성함/직함: " + name + "\n" +
+                 "• 기관/회사명: " + company + "\n" +
+                 "• 문의내용: " + message + "\n\n" +
+                 "구글 스프레드시트에서 실시간 목록을 확인하실 수 있습니다.";
+                 
+      MailApp.sendEmail(adminEmail, subject, body);
+    } catch(mailErr) {
+      // 메일 발송 실패 시에도 시트 저장은 유지
+    }
+    
     return ContentService.createTextOutput(JSON.stringify({
       result: "success",
-      message: "접수 완료"
+      message: "접수 및 알림 발송 완료"
     })).setMimeType(ContentService.MimeType.JSON);
     
   } catch (err) {
