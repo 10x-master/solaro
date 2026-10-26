@@ -101,29 +101,42 @@
     <!-- ========================================== -->
     <section class="pt-6 pb-4">
       <!-- 영상 상단 헤드라인 & 뱃지 -->
-      <div class="flex items-center justify-between mb-2.5">
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-point/10 text-brand-point text-xs font-bold tracking-tight">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-point animate-pulse"></span>
-          실제 야간 주행 영상
-        </span>
-        <span class="text-[11px] text-slate-400 font-medium">소리 켜기 가능</span>
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-point/10 text-brand-point text-xs font-bold tracking-tight">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-point animate-pulse"></span>
+            실제 야간 주행 영상
+          </span>
+          <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full">
+            <i class="fa-solid fa-location-dot text-brand-point text-[10px]"></i>
+            서울 통일로81 ~ 독립문역사거리 구간
+          </span>
+        </div>
+        <span class="text-[11px] text-slate-400 font-medium hidden sm:inline">소리 켜기 가능</span>
       </div>
 
       <!-- 영상 컨테이너: playsinline=1, mute=1, autoplay=1 로 브라우저 이탈 없이 즉시 실행 -->
-      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-md border border-slate-100">
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-md border border-slate-100 group">
         <iframe 
           class="absolute inset-0 w-full h-full"
           src="https://www.youtube.com/embed/lUCmgHLysz8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=lUCmgHLysz8&rel=0&modestbranding=1" 
-          title="솔라로 도로표지병 실제 주행 시인성 비교" 
+          title="솔라로 도로표지병 실제 주행 시인성 비교 - 서울 통일로81~독립문역사거리 구간" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowfullscreen>
         </iframe>
       </div>
-      <p class="text-[11px] text-slate-400 mt-2 flex items-center justify-between">
-        <span>* 폭우 속 일반 반사체 vs 솔라로(가시거리 700m) 비교</span>
-        <span class="text-slate-500 font-medium">눈부심 방지 특허 렌즈</span>
-      </p>
+
+      <!-- 영상 하단 상세 안내 -->
+      <div class="mt-2.5 p-3 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs">
+        <div class="flex items-center gap-1.5 text-slate-800 font-medium">
+          <i class="fa-solid fa-circle-check text-emerald-500 text-xs shrink-0"></i>
+          <span><b>시공 현장:</b> 서울 통일로81 ~ 독립문역사거리 구간</span>
+        </div>
+        <div class="text-[11px] text-slate-500">
+          우천 시 일반 반사체 vs 솔라로(가시거리 700m) 실제 비교
+        </div>
+      </div>
     </section>
 
 
